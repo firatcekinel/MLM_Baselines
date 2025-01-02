@@ -15,7 +15,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_sc
 import argparse
 import evaluate
 import ast
-login(token="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")
+
 
 parser = argparse.ArgumentParser() 
 parser.add_argument('--model_id', default='meta-llama/Llama-3.1-8B-Instruct', type=str, help='model id')
@@ -24,8 +24,10 @@ parser.add_argument('--dataset', default='ner', type=str, help='tsad/offenseval2
 parser.add_argument('--cache_dir', default='/mnt/proj1/dd-23-122/.cache', type=str, help='model cache dir')
 parser.add_argument('--skip_train', default=True, type=bool, help='skip to inference')
 parser.add_argument('--wandb_proj_name', default="bertweet", type=str, help='wandb project name')
+parser.add_argument('--hf_token', default="", type=str, help='Huggingface token')
 args = parser.parse_args()
 
+login(token=args.hf_token)
 
 model_id = args.model_id
 model_name = model_id.split("/")[-1]
